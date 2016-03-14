@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Kolko i krzyzyk</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Ustawienia</string>
+
+    <string name="player_1">Gracz 1</string>
+    <string name="player_2">Gracz 2</string>
+    <string name="player_move">Ruch gracza</string>
+    <string name="score">Punkty: </string>
+    <string name="name">Imie: </string>
+    <string name="player_won">Wygrał gracz nr </string>
+
+    <string name="new_game">Nowa gra</string>
+</resources>
