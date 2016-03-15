@@ -1,5 +1,7 @@
 package com.example.pc.kolkoikrzyzyk;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +16,16 @@ import java.util.Random;
 
 public class kolkoikrzyzyk extends AppCompatActivity {
 
-
+    Button button0;
+    Button button1;
+    Button button2;
+    Button button3;
+    Button button4;
+    Button button5;
+    Button button6;
+    Button button7;
+    Button button8;
+    Button button_new_game;
 
     int score_player_1, score_player_2, player;
     String[] table = {
@@ -34,6 +45,18 @@ public class kolkoikrzyzyk extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kolkoikrzyzyk);
+
+        button0=(Button)findViewById(R.id.button_p_0);
+        button1=(Button)findViewById(R.id.button_p_1);
+        button2=(Button)findViewById(R.id.button_p_2);
+        button3=(Button)findViewById(R.id.button_p_3);
+        button4=(Button)findViewById(R.id.button_p_4);
+        button5=(Button)findViewById(R.id.button_p_5);
+        button6=(Button)findViewById(R.id.button_p_6);
+        button7=(Button)findViewById(R.id.button_p_7);
+        button8=(Button)findViewById(R.id.button_p_8);
+        button_new_game=(Button)findViewById(R.id.button);
+
         reset_game();
         hide_new_game_button();
 
@@ -62,16 +85,15 @@ public class kolkoikrzyzyk extends AppCompatActivity {
     }
 
     public void buttonOnClick(View v) {
-        Button button=(Button) v;
-        button.setText(player_char);
-        button.setClickable(false);
+        Button button_clicked=(Button) v;
+        button_clicked.setText(player_char);
+        button_clicked.setClickable(false);
 
         check_winner();
         change_player();
     }
 
     public void buttonOnClick_new_game(View v) {
-// do something when the button is clicked
         new_game();
     }
 
@@ -79,86 +101,60 @@ public class kolkoikrzyzyk extends AppCompatActivity {
         player_char="o";
         player=1;
         change_player_anouce();
-
-        Button button0=(Button)findViewById(R.id.button_p_0);
-        Button button1=(Button)findViewById(R.id.button_p_1);
-        Button button2=(Button)findViewById(R.id.button_p_2);
-        Button button3=(Button)findViewById(R.id.button_p_3);
-        Button button4=(Button)findViewById(R.id.button_p_4);
-        Button button5=(Button)findViewById(R.id.button_p_5);
-        Button button6=(Button)findViewById(R.id.button_p_6);
-        Button button7=(Button)findViewById(R.id.button_p_7);
-        Button button8=(Button)findViewById(R.id.button_p_8);
-
-        button0.setText("");
-        button0.setClickable(true);
-        button0.setTextColor(0xFFFFFFFF);
-        button0.setBackgroundColor(0xFFC3FF47);
-
-        button1.setText("");
-        button1.setClickable(true);
-        button1.setTextColor(0xFFFFFFFF);
-        button1.setBackgroundColor(0xFFC3FF47);
-
-        button2.setText("");
-        button2.setClickable(true);
-        button2.setTextColor(0xFFFFFFFF);
-        button2.setBackgroundColor(0xFFC3FF47);
-
-        button3.setText("");
-        button3.setClickable(true);
-        button3.setTextColor(0xFFFFFFFF);
-        button3.setBackgroundColor(0xFFC3FF47);
-
-        button4.setText("");
-        button4.setClickable(true);
-        button4.setTextColor(0xFFFFFFFF);
-        button4.setBackgroundColor(0xFFC3FF47);
-
-        button5.setText("");
-        button5.setClickable(true);
-        button5.setTextColor(0xFFFFFFFF);
-        button5.setBackgroundColor(0xFFC3FF47);
-
-        button6.setText("");
-        button6.setClickable(true);
-        button6.setTextColor(0xFFFFFFFF);
-        button6.setBackgroundColor(0xFFC3FF47);
-
-        button7.setText("");
-        button7.setClickable(true);
-        button7.setTextColor(0xFFFFFFFF);
-        button7.setBackgroundColor(0xFFC3FF47);
-
-        button8.setText("");
-        button8.setClickable(true);
-        button8.setTextColor(0xFFFFFFFF);
-        button8.setBackgroundColor(0xFFC3FF47);
+        buttons_setClickable(true);
+        buttons_setText("");
+        buttons_setTextColor(Color.BLACK);
+        buttons_setBackgroundColor(0xFFC3FF47);
         hide_new_game_button();
     }
 
-public void block_table() {
-    Button button0=(Button)findViewById(R.id.button_p_0);
-    Button button1=(Button)findViewById(R.id.button_p_1);
-    Button button2=(Button)findViewById(R.id.button_p_2);
-    Button button3=(Button)findViewById(R.id.button_p_3);
-    Button button4=(Button)findViewById(R.id.button_p_4);
-    Button button5=(Button)findViewById(R.id.button_p_5);
-    Button button6=(Button)findViewById(R.id.button_p_6);
-    Button button7=(Button)findViewById(R.id.button_p_7);
-    Button button8=(Button)findViewById(R.id.button_p_8);
+    public void buttons_setClickable(boolean bool) {
+        button0.setClickable(bool);
+        button1.setClickable(bool);
+        button2.setClickable(bool);
+        button3.setClickable(bool);
+        button4.setClickable(bool);
+        button5.setClickable(bool);
+        button6.setClickable(bool);
+        button7.setClickable(bool);
+        button8.setClickable(bool);
+    }
 
-    button0.setClickable(false);
-    button1.setClickable(false);
-    button2.setClickable(false);
-    button3.setClickable(false);
-    button4.setClickable(false);
-    button5.setClickable(false);
-    button6.setClickable(false);
-    button7.setClickable(false);
-    button8.setClickable(false);
+    public void buttons_setTextColor(int color) {
+        button0.setTextColor(color);
+        button1.setTextColor(color);
+        button2.setTextColor(color);
+        button3.setTextColor(color);
+        button4.setTextColor(color);
+        button5.setTextColor(color);
+        button6.setTextColor(color);
+        button7.setTextColor(color);
+        button8.setTextColor(color);
+    }
 
-}
+    public void buttons_setBackgroundColor(int color) {
+        button0.setBackgroundColor(color);
+        button1.setBackgroundColor(color);
+        button2.setBackgroundColor(color);
+        button3.setBackgroundColor(color);
+        button4.setBackgroundColor(color);
+        button5.setBackgroundColor(color);
+        button6.setBackgroundColor(color);
+        button7.setBackgroundColor(color);
+        button8.setBackgroundColor(color);
+    }
+
+    public void buttons_setText(String string) {
+        button0.setText(string);
+        button1.setText(string);
+        button2.setText(string);
+        button3.setText(string);
+        button4.setText(string);
+        button5.setText(string);
+        button6.setText(string);
+        button7.setText(string);
+        button8.setText(string);
+    }
 
     public void change_player(){
         if(player==1){
@@ -201,30 +197,19 @@ public void block_table() {
         String player_won=getResources().getString(R.string.player_won);
         Toast.makeText(getApplicationContext(), player_won + player,
                 Toast.LENGTH_LONG).show();
-        block_table();
+        buttons_setClickable(false);
         reload_score();
         show_new_game_button();
     }
     public void hide_new_game_button(){
-        Button button_new_game=(Button)findViewById(R.id.button);
         button_new_game.setVisibility(View.GONE);
     }
     public void show_new_game_button(){
-        Button button_new_game=(Button)findViewById(R.id.button);
         button_new_game.setVisibility(View.VISIBLE);
     }
     public void check_winner(){
-        Button button0=(Button)findViewById(R.id.button_p_0);
-        Button button1=(Button)findViewById(R.id.button_p_1);
-        Button button2=(Button)findViewById(R.id.button_p_2);
-        Button button3=(Button)findViewById(R.id.button_p_3);
-        Button button4=(Button)findViewById(R.id.button_p_4);
-        Button button5=(Button)findViewById(R.id.button_p_5);
-        Button button6=(Button)findViewById(R.id.button_p_6);
-        Button button7=(Button)findViewById(R.id.button_p_7);
-        Button button8=(Button)findViewById(R.id.button_p_8);
 
-        if (button0.getText().toString() == button1.getText().toString() && button0.getText().toString() == button2.getText().toString() && button0.getText().toString() !="") {
+        if (button0.getText().toString().equals(button1.getText().toString()) && button0.getText().toString().equals(button2.getText().toString()) && !button0.getText().toString().equals("")) {
             button0.setTextColor(0xFF00FF00);
             button0.setBackgroundColor(0xFFFF0000);
             button1.setTextColor(0xFF00FF00);
@@ -234,7 +219,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button3.getText().toString() == button4.getText().toString() && button3.getText().toString() == button5.getText().toString() && button3.getText().toString() !="") {
+        else if (button3.getText().toString().equals(button4.getText().toString()) && button3.getText().toString().equals(button5.getText().toString()) && !button3.getText().toString().equals("")) {
             button3.setTextColor(0xFF00FF00);
             button3.setBackgroundColor(0xFFFF0000);
             button4.setTextColor(0xFF00FF00);
@@ -244,7 +229,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button6.getText().toString() == button7.getText().toString() && button6.getText().toString() == button8.getText().toString() && button6.getText().toString() !="") {
+        else if (button6.getText().toString().equals(button7.getText().toString()) && button6.getText().toString().equals(button8.getText().toString()) && !button6.getText().toString().equals("")) {
             button6.setTextColor(0xFF00FF00);
             button6.setBackgroundColor(0xFFFF0000);
             button7.setTextColor(0xFF00FF00);
@@ -254,7 +239,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button0.getText().toString() == button3.getText().toString() && button0.getText().toString() == button6.getText().toString() && button0.getText().toString() !="") {
+        else if (button0.getText().toString().equals( button3.getText().toString()) && button0.getText().toString().equals(button6.getText().toString()) && !button0.getText().toString().equals("")) {
             button0.setTextColor(0xFF00FF00);
             button0.setBackgroundColor(0xFFFF0000);
             button3.setTextColor(0xFF00FF00);
@@ -264,7 +249,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button1.getText().toString() == button4.getText().toString() && button1.getText().toString() == button7.getText().toString() && button1.getText().toString() !="") {
+        else if (button1.getText().toString().equals(button4.getText().toString()) && button1.getText().toString().equals(button7.getText().toString()) && !button1.getText().toString().equals("")) {
             button1.setTextColor(0xFF00FF00);
             button1.setBackgroundColor(0xFFFF0000);
             button4.setTextColor(0xFF00FF00);
@@ -274,7 +259,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button2.getText().toString() == button5.getText().toString() && button2.getText().toString() == button8.getText().toString() && button2.getText().toString() !="") {
+        else if (button2.getText().toString().equals(button5.getText().toString()) && button2.getText().toString().equals(button8.getText().toString()) && !button2.getText().toString().equals("")) {
             button2.setTextColor(0xFF00FF00);
             button2.setBackgroundColor(0xFFFF0000);
             button5.setTextColor(0xFF00FF00);
@@ -284,7 +269,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button0.getText().toString() == button4.getText().toString() && button0.getText().toString() == button8.getText().toString() && button0.getText().toString() !="") {
+        else if (button0.getText().toString().equals(button4.getText().toString()) && button0.getText().toString().equals(button8.getText().toString()) && !button0.getText().toString().equals("")) {
             button0.setTextColor(0xFF00FF00);
             button0.setBackgroundColor(0xFFFF0000);
             button4.setTextColor(0xFF00FF00);
@@ -294,7 +279,7 @@ public void block_table() {
             add_point();
         }
 
-        else if (button2.getText().toString() == button4.getText().toString() && button2.getText().toString() == button6.getText().toString() && button2.getText().toString() !="") {
+        else if (button2.getText().toString().equals(button4.getText().toString()) && button2.getText().toString().equals(button6.getText().toString()) && !button2.getText().toString().equals("")) {
             button2.setTextColor(0xFF00FF00);
             button2.setBackgroundColor(0xFFFF0000);
             button4.setTextColor(0xFF00FF00);
@@ -304,7 +289,7 @@ public void block_table() {
             add_point();
         }
         else {
-            if (button0.getText().toString() !="" && button1.getText().toString() !="" && button2.getText().toString() !="" && button3.getText().toString() !="" && button4.getText().toString() !="" && button5.getText().toString() !="" && button6.getText().toString() !="" && button7.getText().toString() !="" && button8.getText().toString() !="") {
+            if (!button0.getText().toString().isEmpty() && !button1.getText().toString().isEmpty() && !button2.getText().toString().isEmpty() && !button3.getText().toString().isEmpty() && !button4.getText().toString().isEmpty() && !button5.getText().toString().isEmpty() && !button6.getText().toString().isEmpty() && !button7.getText().toString().isEmpty() && !button8.getText().toString().isEmpty()) {
                 show_new_game_button();
             }
         }
