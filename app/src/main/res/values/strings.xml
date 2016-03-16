@@ -17,5 +17,7 @@
     <string name="MSG_set_players_name">Wpisz imiona graczy</string>
     <string name="MSG_set_player_name">Wpisz imię</string>
     <string name="MSG_accept">Zatwierdź</string>
+    <string name="MSG_names_has_been_changed">Imiona zostały zmienione</string>
+    <string name="MSG_points_has_been_reseted">Punkty zostały zresetowane</string>
     <string name="button_points_reset">Zresetuj punkty</string>
 </resources>

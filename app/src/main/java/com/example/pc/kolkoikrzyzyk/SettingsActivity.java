@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
     private static final String PREFERENCES_NAME = "kolkoikrzyzykPref";
@@ -35,11 +36,16 @@ public class SettingsActivity extends AppCompatActivity {
         preferencesEditor.putString(PREFERENCES_PLAYER_1_NAME, editTextData_1);
         preferencesEditor.putString(PREFERENCES_PLAYER_2_NAME, editTextData_2);
         preferencesEditor.commit();
+        showToast(getString(R.string.MSG_names_has_been_changed));
     }
     public void resetPoints(View v){
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         preferencesEditor.putString(PREFERENCES_PLAYER_1_SCORE, "0");
         preferencesEditor.putString(PREFERENCES_PLAYER_2_SCORE, "0");
         preferencesEditor.commit();
+        showToast(getString(R.string.MSG_points_has_been_reseted));
+    }
+    public void showToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 }

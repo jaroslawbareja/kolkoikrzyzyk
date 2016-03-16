@@ -64,8 +64,8 @@ public class kolkoikrzyzyk extends AppCompatActivity {
 
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
 
-        textview_1=(TextView)findViewById(R.id.textView12);
-        textview_2=(TextView)findViewById(R.id.textView8);
+        textview_1=(TextView)findViewById(R.id.textView6);
+        textview_2=(TextView)findViewById(R.id.textView7);
 
         button0=(Button)findViewById(R.id.button_p_0);
         button1=(Button)findViewById(R.id.button_p_1);
