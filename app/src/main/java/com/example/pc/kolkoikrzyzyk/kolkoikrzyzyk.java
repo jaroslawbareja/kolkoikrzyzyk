@@ -1,5 +1,8 @@
 package com.example.pc.kolkoikrzyzyk;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +18,13 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class kolkoikrzyzyk extends AppCompatActivity {
+
+    private static final String PREFERENCES_NAME = "kolkoikrzyzykPref";
+    private static final String PREFERENCES_PLAYER_1_NAME = "player_1_name";
+    private static final String PREFERENCES_PLAYER_2_NAME = "player_2_name";
+    private static final String PREFERENCES_PLAYER_1_SCORE = "player_1_score";
+    private static final String PREFERENCES_PLAYER_2_SCORE = "player_2_score";
+    private SharedPreferences preferences;
 
     Button button0;
     Button button1;
@@ -41,10 +51,21 @@ public class kolkoikrzyzyk extends AppCompatActivity {
     };
     String player_char;
 
+    TextView textview_1;
+    TextView textview_2;
+    TextView sc_player_1;
+    TextView sc_player_2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kolkoikrzyzyk);
+
+        preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
+
+        textview_1=(TextView)findViewById(R.id.textView12);
+        textview_2=(TextView)findViewById(R.id.textView8);
 
         button0=(Button)findViewById(R.id.button_p_0);
         button1=(Button)findViewById(R.id.button_p_1);
@@ -56,10 +77,20 @@ public class kolkoikrzyzyk extends AppCompatActivity {
         button7=(Button)findViewById(R.id.button_p_7);
         button8=(Button)findViewById(R.id.button_p_8);
         button_new_game=(Button)findViewById(R.id.button);
+        sc_player_1 = (TextView)findViewById(R.id.score_pl_1);
+        sc_player_2 = (TextView)findViewById(R.id.score_pl_2);
 
+        refresh_sharedpreferences();
         reset_game();
         hide_new_game_button();
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        refresh_sharedpreferences();
     }
 
     @Override
@@ -78,7 +109,8 @@ public class kolkoikrzyzyk extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -97,6 +129,14 @@ public class kolkoikrzyzyk extends AppCompatActivity {
         new_game();
     }
 
+    public void refresh_sharedpreferences(){
+        String PREFERENCES_PLAYER_1_NAME_VAL = preferences.getString(PREFERENCES_PLAYER_1_NAME, "");
+        String PREFERENCES_PLAYER_2_NAME_VAL = preferences.getString(PREFERENCES_PLAYER_2_NAME, "");
+
+        textview_1.setText(PREFERENCES_PLAYER_1_NAME_VAL);
+        textview_2.setText(PREFERENCES_PLAYER_2_NAME_VAL);
+        reload_score();
+    }
     public void new_game(){
         player_char="o";
         player=1;
@@ -174,16 +214,26 @@ public class kolkoikrzyzyk extends AppCompatActivity {
     }
 
     public void reset_game(){
-        score_player_1=0;
-        score_player_2=0;
+
         new_game();
         reload_score();
     }
 
     public void reload_score(){
-        TextView sc_player_1 = (TextView)findViewById(R.id.score_pl_1);
+        score_player_1=0;
+        score_player_2=0;
+        try {
+            score_player_1 = Integer.parseInt(preferences.getString(PREFERENCES_PLAYER_1_SCORE, ""));
+        } catch(NumberFormatException nfe) {
+            System.out.println("Could not parse " + nfe);
+        }
+        try {
+            score_player_2 = Integer.parseInt(preferences.getString(PREFERENCES_PLAYER_2_SCORE, ""));
+        } catch(NumberFormatException nfe) {
+            System.out.println("Could not parse " + nfe);
+        }
+
         sc_player_1.setText(Integer.toString(score_player_1));
-        TextView sc_player_2 = (TextView)findViewById(R.id.score_pl_2);
         sc_player_2.setText(Integer.toString(score_player_2));
     }
 
@@ -194,6 +244,11 @@ public class kolkoikrzyzyk extends AppCompatActivity {
         else{
             score_player_2++;
         }
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        preferencesEditor.putString(PREFERENCES_PLAYER_1_SCORE, String.valueOf(score_player_1));
+        preferencesEditor.putString(PREFERENCES_PLAYER_2_SCORE, String.valueOf(score_player_2));
+        preferencesEditor.commit();
+
         String player_won=getResources().getString(R.string.player_won);
         Toast.makeText(getApplicationContext(), player_won + player,
                 Toast.LENGTH_LONG).show();

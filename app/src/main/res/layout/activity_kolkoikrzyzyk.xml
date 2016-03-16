@@ -184,6 +184,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/score_pl_1"
+        android:text="aaa"
         android:layout_alignBottom="@+id/textView4"
         android:layout_toEndOf="@+id/textView4" />
 
@@ -192,6 +193,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/score_pl_2"
+        android:text="aaa"
         android:layout_alignBottom="@+id/score_pl_1"
         android:layout_alignEnd="@+id/textView8" />
 
@@ -203,5 +205,24 @@
         android:id="@+id/textView11"
         android:layout_alignBottom="@+id/score_pl_2"
         android:layout_toStartOf="@+id/score_pl_2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/name"
+        android:id="@+id/textView12"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/name"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/textView2"
+        android:layout_toStartOf="@+id/textView8" />
 
 </RelativeLayout>
